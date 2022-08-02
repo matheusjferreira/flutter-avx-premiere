@@ -56,6 +56,8 @@ Flutter stable - 3.0.5;
 Flutter packages:
 
     flutter_modular: ^5.0.3
+    flutter_bloc: ^8.0.1
+    meta: ^1.8.0
 
 > ## Framework and Tools:
 
