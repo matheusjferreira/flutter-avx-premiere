@@ -58,6 +58,7 @@ Flutter packages:
     flutter_modular: ^5.0.3
     flutter_bloc: ^8.0.1
     meta: ^1.8.0
+    dio: ^4.0.6
 
 > ## Framework and Tools:
 
