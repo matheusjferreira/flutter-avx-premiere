@@ -1,4 +1,4 @@
-# avx_premiere
+<!-- # avx_premiere
 
 A new Flutter project.
 
@@ -13,4 +13,74 @@ A few resources to get you started if this is your first Flutter project:
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+samples, guidance on mobile development, and a full API reference. -->
+
+> # AVX Premiere
+
+> :warning: This project is a job test.
+
+    root
+    └─ src
+    ....└─ Desafio_Starta_Flutter_.docx // Here you will find more details.
+
+> ## The Project:
+
+This is a simple application that provides a list of movies to the user and allows him to view the details and mark them as favorites.
+
+* Prototype:
+
+![image](https://user-images.githubusercontent.com/59848966/182155385-70d99f63-7e77-4cec-aaa4-a3ee14ae4986.png)
+
+* Result:
+
+> :warning: Working in progress.
+
+> ## Features:
+
+* List movies;
+* View Details;
+* Bookmark;
+
+> ## Arch:
+
+> :warning: Working in progress.
+
+> ## Endpoint:
+
+api: https://api.themoviedb.org/3/movie/;
+
+> ## Dependencies:
+
+Flutter stable - 3.0.5;
+
+Flutter packages:
+
+    flutter_modular: ^5.0.3
+
+> ## Framework and Tools:
+
+* vs code;
+
+> ## License:
+
+    MIT License
+
+    Copyright (c) 2022 Matheus Ferreira
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
