@@ -33,7 +33,7 @@ This is a simple application that provides a list of movies to the user and allo
 
 * Result:
 
-> :warning: Working in progress.
+![result](https://user-images.githubusercontent.com/59848966/182379158-7b4a5394-3dd2-4be6-96e3-b2825d971236.png)
 
 > ## Features:
 
@@ -43,7 +43,29 @@ This is a simple application that provides a list of movies to the user and allo
 
 > ## Arch:
 
-> :warning: Working in progress.
+    root
+    └─ lib
+    ....├─ modules
+    ........└─ home
+    ............├─ bloc
+    ................├─ home_bloc.dart
+    ................├─ home_event.dart
+    ................└─ home_state.dart
+    ............├─ models
+    ................├─ movie_details
+    ................└─ usimilar_movie
+    ....................└─ similar_movie_model.dart
+    ............├─ pages
+    ................└─ home_page.dart
+    ............├─ repositories
+    ................└─ home_repository.dart
+    ............└─ home_module.dart
+    ....├─ shared
+    ........├─ core
+    ........└─ widgets
+    ....├─ app_module.dart
+    ....├─ app_widget.dart
+    ....└─ main.dart
 
 > ## Endpoint:
 
