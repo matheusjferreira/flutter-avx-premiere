@@ -86,6 +86,10 @@ Flutter packages:
 > ## Framework and Tools:
 
 * vs code;
+* git;
+* git flow;
+* android-emulator;
+* themoviedb api;
 
 > ## License:
 
