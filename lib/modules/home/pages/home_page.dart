@@ -4,7 +4,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../shared/core/app_api.dart';
 import '../../../shared/core/app_colors.dart';
+import '../../../shared/core/app_fonts.dart';
 import '../../../shared/helpers/convert_category_helper.dart';
+import '../../../shared/widgets/scaffolds/primary_scaffold_widget.dart';
+import '../../../shared/widgets/tiles/details_tile_widget.dart';
+import '../../../shared/widgets/tiles/similar_tile_widget.dart';
 import '../models/movie_details/movie_details_model.dart';
 import '../bloc/home_bloc.dart';
 import '../models/similar_movie/similar_movie_model.dart';
@@ -35,7 +39,11 @@ class _HomePageState extends State<HomePage> {
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state is HomeLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return const PrimaryScaffoldWidget(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
           }
 
           if (state is HomeLoaded) {
@@ -43,7 +51,11 @@ class _HomePageState extends State<HomePage> {
           }
 
           if (state is HomeError) {
-            return Center(child: Text(state.message));
+            return PrimaryScaffoldWidget(
+              body: Center(
+                child: Text(state.message, style: AppFonts.title.getFont),
+              ),
+            );
           }
           return const SizedBox();
         },
@@ -54,163 +66,87 @@ class _HomePageState extends State<HomePage> {
   _buildBody(stateMovieDetails, stateSimilarMovie) {
     movieDetailsModel = stateMovieDetails;
     similarMovieModel = stateSimilarMovie;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.black.getColor,
-        body: Column(
-          children: [
-            Image.network(
-                '${AppApi.mdbImage.getUrl}${movieDetailsModel!.backdropPath}'),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        movieDetailsModel!.title!,
-                        style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.white.getColor),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          favorite = !favorite;
-                          setState(() {});
-                        },
-                        icon: !favorite
-                            ? Icon(
-                                Icons.favorite_border,
-                                color: AppColors.white.getColor,
-                              )
-                            : Icon(
-                                Icons.favorite,
-                                color: AppColors.white.getColor,
-                              ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.favorite,
-                            color: AppColors.white.getColor,
-                            size: 16,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            movieDetailsModel!.voteCount!.toString(),
-                            style: TextStyle(color: AppColors.white.getColor),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 24),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.catching_pokemon,
-                            color: AppColors.white.getColor,
-                            size: 16,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            movieDetailsModel!.popularity!.toString(),
-                            style: TextStyle(color: AppColors.white.getColor),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: similarMovieModel!.results!.length,
-                itemBuilder: (context, index) {
-                  String category = '';
-                  for (var element
-                      in similarMovieModel!.results![index].genreIds!) {
-                    category += (convertCategoryHelper(element) + ', ');
-                  }
-                  return ListTile(
-                    title: Row(
+    return PrimaryScaffoldWidget(
+      body: Column(
+        children: [
+          Image.network(
+              '${AppApi.mdbImage.getUrl}${movieDetailsModel!.backdropPath}'),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(movieDetailsModel!.title!,
+                        style: AppFonts.title.getFont),
+                    IconButton(
+                      onPressed: () {
+                        favorite = !favorite;
+                        setState(() {});
+                      },
+                      icon: !favorite
+                          ? Icon(
+                              Icons.favorite_border,
+                              color: AppColors.white.getColor,
+                            )
+                          : Icon(
+                              Icons.favorite,
+                              color: AppColors.white.getColor,
+                            ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    Row(
                       children: [
-                        SizedBox(
-                          height: 100,
-                          width: 75,
-                          child: Image.network(
-                            '${AppApi.mdbImage.getUrl}${similarMovieModel!.results![index].backdropPath}',
-                            fit: BoxFit.cover,
-                          ),
+                        DetailsTileWidget(
+                          icon: Icons.favorite,
+                          label: movieDetailsModel!.voteCount!.toString(),
                         ),
-                        const SizedBox(width: 16),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              similarMovieModel!.results![index].title
-                                  .toString(),
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.white.getColor),
-                            ),
-                            const SizedBox(height: 4),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  similarMovieModel!.results![index].releaseDate
-                                      .toString()
-                                      .substring(0, 4),
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColors.white.getColor),
-                                ),
-                                const SizedBox(width: 16),
-                                SizedBox(
-                                  width: 150,
-                                  child: Text(
-                                    category.substring(0, category.length - 2),
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: AppColors.white.getColor),
-                                    overflow: TextOverflow.fade,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Expanded(
-                          child: SizedBox(
-                            height: 100,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: Icon(
-                                Icons.check_circle,
-                                color: AppColors.white.getColor,
-                                size: 16,
-                              ),
-                            ),
-                          ),
-                        ),
+                        const SizedBox(width: 24),
+                        DetailsTileWidget(
+                          icon: Icons.catching_pokemon,
+                          label: movieDetailsModel!.popularity!.toString(),
+                        )
                       ],
                     ),
-                  );
-                },
-              ),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          _buildSimilarList(),
+        ],
+      ),
+    );
+  }
+
+  _buildSimilarList() {
+    return Expanded(
+      child: ListView.builder(
+        itemCount: similarMovieModel!.results!.length,
+        itemBuilder: (context, index) {
+          String category = '';
+          for (var element in similarMovieModel!.results![index].genreIds!) {
+            category += (convertCategoryHelper(element) + ', ');
+          }
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            child: SimilarTileWidget(
+              srcImage:
+                  '${AppApi.mdbImage.getUrl}${similarMovieModel!.results![index].backdropPath}',
+              title: similarMovieModel!.results![index].title.toString(),
+              firstSubtitle: similarMovieModel!.results![index].releaseDate
+                  .toString()
+                  .substring(0, 4),
+              secondSubtitle: category.substring(0, category.length - 2),
+              suffixIcon: Icons.check_circle,
+            ),
+          );
+        },
       ),
     );
   }
