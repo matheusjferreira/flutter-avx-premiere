@@ -54,6 +54,7 @@ This is a simple application that provides a list of movies to the user and allo
     ............├─ models
     ................├─ movie_details
     ................└─ usimilar_movie
+    ....................├─ results_models.dart
     ....................└─ similar_movie_model.dart
     ............├─ pages
     ................└─ home_page.dart
